@@ -1,0 +1,23 @@
+<div class="scheduler">
+  <label for="datPicker">Select date:</label>
+  <br>
+  <input type="date" id="calender" (click)="onClick()"
+  placeholder="Choose your date">
+  <br>
+  <br>
+  <button type="submit" (click)="checkSlot()">Check Slots</button>
+  <div *ngIf="isSlotAvailable && (formattedDate !== '')">
+    <p class="date-heading">{{formattedDate}}</p>
+    <div class='avilable-timeSlots' *ngIf="avilableTimeSlot; else noTimeSlot">
+      <div class="time-slot-display" *ngFor="let timeSlot of timeSlots">
+        <p class="time-slot-card"><span class="round-dot"></span>{{timeSlot}}</p>
+      </div>
+    </div>
+    <ng-template #noTimeSlot>
+      <div class="no-TimeSlot">Not Sceduled for the day Seletced</div>
+    </ng-template>
+  </div>
+  <div class="no-TimeSlot" *ngIf="isSlotAvailable && (formattedDate === '')">
+    Select a valid date
+  </div>
+  <div>
